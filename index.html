@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Card</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 22px;
+      color: #2c3e50;
+      margin: 10px 0;
+    }
+
+    .stock {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .in-stock {
+      background: #d1f7d6;
+      color: #1b7f2e;
+    }
+
+    .out-stock {
+      background: #f8d7da;
+      color: #a71d2a;
+    }
+
+    button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-card">
+    <h3 id="product-name">Wireless Headphones</h3>
+    <p class="price" id="product-price">$99.99</p>
+    <span class="stock in-stock" id="stock-status">In Stock</span>
+    <br>
+    <button id="add-to-cart">Add to Cart</button>
+  </div>
+
+  <script>
+    // Example data
+    const product = {
+      name: "Wireless Headphones",
+      price: 99.99,
+      inStock: true
+    };
+
+    // Update card dynamically
+    document.getElementById("product-name").textContent = product.name;
+    document.getElementById("product-price").textContent = "$" + product.price.toFixed(2);
+
+    const stockStatus = document.getElementById("stock-status");
+    const addBtn = document.getElementById("add-to-cart");
+
+    if (product.inStock) {
+      stockStatus.textContent = "In Stock";
+      stockStatus.classList.add("in-stock");
+    } else {
+      stockStatus.textContent = "Out of Stock";
+      stockStatus.classList.add("out-stock");
+      addBtn.disabled = true;
+    }
+
+    addBtn.addEventListener("click", () => {
+      alert(`${product.name} added to cart!`);
+    });
+  </script>
+</body>
+</html>
